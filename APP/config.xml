@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns="http://www.w3.org/ns/widgets" 
+        xmlns:gap="http://phonegap.com/ns/1.0" 
+        id="com.defaltuser24.gatocurioso"
+        version="0.1.0">
+
+    <name>Gato curioso</name>
+
+    <description>
+        Es una app que facilita los datos de tus gatos para que no te olvides los turnos con el veterinario, las vacunas que le diste y la comida que le das. Cuenta con una seccion de Catpedia que te muestra algunas razas, un mapa con las veterinarias y guia de alimentos. Podes agregar a todos tus gatos, colocarles una foto y todos sus datos personales. Cuenta con una sección de datos curiosos para que sepas todo sobre tus gatos.
+    </description>
+
+    <author href="https://github.com/DEFALTUSER-24/gato-curioso">
+        Castro Ezequiel - Programación
+        Bonazzola Ayelén - Diseño
+    </author>
+
+    <platform name="ios" />
+    <platform name="android" />
+    <platform name="winphone" />
+
+    <preference name="permissions" value="none" />
+
+    <preference name='phonegap-version' value='cli-8.0.0' />
+
+    <preference name="orientation" value="portrait" />
+
+    <preference name="target-device" value="universal" />
+
+    <preference name="fullscreen" value="false" />
+    
+    <preference name="webviewbounce" value="true" />
+
+    <preference name="prerendered-icon" value="true" />
+
+    <preference name="stay-in-webview" value="false" />
+
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+
+    <preference name="detect-data-types" value="true" />
+
+    <preference name="exit-on-suspend" value="false" />
+    
+    <preference name="show-splash-screen-spinner" value="false" />
+
+    <preference name="auto-hide-splash-screen" value="true" />
+
+    <preference name="showSplashScreenSpinner" value="false" />
+
+    <preference name="android-installLocation" value="auto" />
+
+    <preference name="splashScreenDelay" value="6000" />
+    
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    
+    <preference name="StatusBarBackgroundColor" value="#56b0ae" />
+
+    <preference name="StatusBarStyle" value="lightcontent" />
+    
+    <!-- <plugin name="cordova-plugin-battery-status" source="npm" />
+    <plugin name="cordova-plugin-camera" source="npm" />
+    <plugin name="cordova-plugin-media-capture" source="npm" />
+    <plugin name="cordova-plugin-console" source="npm" />
+    <plugin name="cordova-plugin-contacts" source="npm" />
+    <plugin name="cordova-plugin-device" source="npm" />
+    <plugin name="cordova-plugin-device-motion" source="npm" />
+    <plugin name="cordova-plugin-device-orientation" source="npm" />
+    <plugin name="cordova-plugin-dialogs" source="npm" />
+    <plugin name="cordova-plugin-file" source="npm" />
+    <plugin name="cordova-plugin-file-transfer" source="npm" />
+    <plugin name="cordova-plugin-geolocation" source="npm" />
+    <plugin name="cordova-plugin-globalization" source="npm" />
+    <plugin name="cordova-plugin-inappbrowser" source="npm" />
+    <plugin name="cordova-plugin-media" source="npm" />
+    <plugin name="cordova-plugin-network-information" source="npm" />
+    <plugin name="cordova-plugin-vibration" source="npm" /> -->
+    <plugin name="cordova-plugin-splashscreen" source="npm" />
+    <plugin name="cordova-plugin-statusbar" source="npm" />
+
+
+    <icon src="logo.png"/>
+    
+    <splash src="res/screen/android/splash.png" />
+    
+    <gap:splash src="res/screen/android/splash.png" 
+    gap:platform="android" gap:density="mdpi" qualifier="mdpi"/>
+    
+    <gap:splash src="res/screen/android/splash_hdpi.png" 
+		gap:platform="android" gap:density="hdpi" qualifier="hdpi"/>
+
+    <access origin="*" />
+
+    <plugin name="cordova-plugin-whitelist" version="1" />
+    
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    
+</widget>

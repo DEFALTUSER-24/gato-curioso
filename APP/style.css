@@ -1,0 +1,733 @@
+img {
+    max-width: 100%;
+}
+
+@font-face {
+    font-family: font-title;
+    src: url("fonts/Little_Orion.otf");
+}
+
+@font-face {
+    font-family: font-main;
+    src: url("fonts/Quicksand-Regular.ttf");
+}
+
+* {
+    font-family: font-main!important;
+}
+
+.lvBackground {
+    display: none;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+}
+
+.noPadding {
+    padding: 0!important;
+}
+
+.titleFont {
+    font-family: font-title!important;
+    letter-spacing: 3px;
+}
+
+.darkGreen {
+    color: #56b0ae;
+}
+
+.darkGreen-border {
+    border-color: #56b0ae!important;
+}
+
+.orange {
+    color: #ffd6ba!important;
+}
+
+.orange-bg {
+    background-color: #ffd6ba!important;
+}
+
+[data-role="header"] {
+    font-family: font-title!important;
+    letter-spacing: 3px;
+    border: none;
+}
+
+[data-role="header"] h1 {
+    font-size: 2rem!important;
+}
+
+[data-role="footer"] {
+    border: none !important;
+    box-shadow: 0px 0px 10px -1px lightgrey;
+}
+
+[data-role="footer"] [data-role="listview"] {
+    width: 100%;
+    z-index: 1000;
+    left: 0;
+    bottom: 0;
+    display: none;
+}
+
+[data-role="footer"] [data-role="listview"] li {
+    display: block !important;
+    width: 100% !important;
+    padding: 10px;
+}
+
+[data-role="footer"] [data-role="listview"] li a {
+    border-radius: 8px!important;
+}
+
+[data-role="navbar"] ul:nth-child(2) {
+    height: 50px;
+}
+
+[data-role="navbar"] ul:nth-child(2) li {
+    height: 100% !important;
+}
+
+[data-role="navbar"] ul:nth-child(2) li a {
+    border: none !important;
+    padding-bottom: 25px !important;
+    overflow: visible !important;
+}
+
+.ui-navbar ul:nth-child(2) li a:after {
+    height: 30px;
+    width: 30px;
+    margin-left: -15px;
+    margin-top: 5px;
+}
+
+.ui-header-fixed {
+    z-index: 998!important;
+}
+
+.ui-header, .ui-title {
+    white-space: normal!important;
+}
+
+.ui-panel {
+    width: 100%;
+    z-index: 999;
+}
+/* Panel right closed */
+.ui-panel-position-right {
+	right: -100%;
+}
+/* Panel right closed animated */
+.ui-panel-animate.ui-panel-position-right.ui-panel-display-overlay,
+.ui-panel-animate.ui-panel-position-right.ui-panel-display-push {
+	right: 0;
+	-webkit-transform: translate3d(100%,0,0);
+	-moz-transform: translate3d(100%,0,0);
+	transform: translate3d(100%,0,0);
+}
+
+/* Panel right open */
+.ui-panel-page-content-position-right {
+	left: -100%;
+	right: 50%;
+}
+/* Panel right open animated */
+.ui-panel-animate.ui-panel-page-content-position-right {
+	left: 0;
+	right: 0;
+	-webkit-transform: translate3d(-100%,0,0);
+	-moz-transform: translate3d(-100%,0,0);
+	transform: translate3d(-100%,0,0);
+}
+/* Dismiss model open */
+.ui-panel-dismiss-open.ui-panel-dismiss-position-right {
+    right: 100%;
+}
+
+.slide-panel {
+    background-color: #bee3db!important;
+}
+
+.ui-block-b-own {
+    padding-left: 10px !important
+}
+
+.ui-grid-no-overflow {
+    overflow: visible !important;
+}
+
+.ui-grid-center {
+    text-align: center;
+}
+
+#newUser {
+    background-image: url(img/login-bg.png);
+    background-size: cover;
+}
+
+#profile main [data-role="listview"], #addPet main .dataMargin, #editSelectedPet main .dataMargin, #petSelected main .dataMargin, #profile main .dataMargin {
+    margin-top: 120px;
+}
+
+.editInputMargin {
+    margin-bottom: 40px;
+}
+
+.hidden-listview-input {
+    padding: 0 !important;
+}
+
+.hidden-listview-input div {
+    margin: 0;
+    border-color: transparent;
+    box-shadow: none;
+    padding: 5px 10px;
+    border: 0;
+}
+
+/* Home icon */
+.btn-home:after {
+    background-image: url("img/navbar/home.png") !important;
+    background-size: cover !important;
+    background-color: transparent !important;
+}
+
+.btn-home-active:after {
+    background-image: url("img/navbar/homeactive.png") !important;
+    background-size: cover !important;
+    background-color: transparent !important;
+}
+
+/* Cat icon */
+.btn-cat:after {
+    background-image: url("img/navbar/cat.png")!important;
+    background-size: cover!important;
+    background-color: transparent!important;
+}
+
+.btn-cat-active:after {
+    background-image: url("img/navbar/catactive.png") !important;
+    background-size: cover !important;
+    background-color: transparent!important;
+}
+
+/* Plus icon */
+.btn-plus {
+    z-index: 2000!important;
+}
+
+.btn-plus:after, btn-plus-active:after {
+    width: 60px!important;
+    height: 60px!important;
+    transform: translate3d(-17px, -22px, 0);
+}
+
+.btn-plus:after {
+    background-image: url("img/navbar/nv-plus.png") !important;
+    background-size: cover !important;
+    background-color: transparent!important;
+}
+
+.btn-plus-active:after {
+    background-image: url("img/navbar/nv-plusactive.png") !important;
+    background-size: cover !important;
+    background-color: transparent !important;
+}
+
+.btn-plus:focus {
+    box-shadow: none!important;
+}
+
+/* petpedia icon */
+.btn-pedia:after {
+    background-image: url("img/navbar/pedia.png") !important;
+    background-size: cover !important;
+    background-color: transparent!important;
+}
+
+.btn-pedia-active:after {
+    background-image: url("img/navbar/pediaactive.png") !important;
+    background-size: cover !important;
+    background-color: transparent !important;
+}
+
+/* Panel icon */
+.btn-panel:after {
+    background-image: url("img/navbar/panel.png") !important;
+    background-size: cover !important;
+    background-color: transparent!important;
+}
+
+.btn-panel-active:after {
+    background-image: url("img/navbar/panelactive.png") !important;
+    background-size: cover !important;
+    background-color: transparent !important;
+}
+
+/* Header buttons */
+.btn-header {
+    height: 70px !important;
+    width: 50px !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: .2em 0 !important;
+}
+
+.btn-header:after {
+    border-radius: 0!important;
+    background-color: transparent!important;
+}
+
+.btn-delete:after {
+    background-image: url("img/delete.png") !important;
+    background-size: cover;
+}
+
+hr {
+    border-color: #555b6e;
+    opacity: 0.5;
+}
+
+.descriptive-text {
+    font-size: 1.3rem;
+}
+
+.loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10000!important;
+}
+
+.spinner {
+    transform: translateY(-50%);
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #56b0ae;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    position:fixed;
+    opacity: 0.8;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*************************************** New user **************************************/
+
+.center-content {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+
+.center-content div {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.center-content .ui-input-text {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#loginForm .ui-btn, #registerForm .ui-btn {
+    margin-bottom: 20px;
+}
+
+/****************************************** Home ***************************************/
+.card {
+    margin: 20px auto;
+    border: solid #bee3db 2px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    min-height: 50px;
+    box-shadow: 0px 0px 10px -1px lightgrey;
+}
+
+.titlehome {
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#home #petList {
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 10px;
+}
+
+.cardplus {
+    background: #ffd6ba;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+    margin-right: 15px!important;
+}
+
+.cardplus a {
+    display: block;
+    height: 110px!important;
+    width: 110px!important;
+    background-size: cover;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cardplus img{
+    max-height: 110px;
+    max-width: 120px;
+    min-height: 110px;
+    min-width: 70px;
+    border-radius: 50%!important;
+    display: block;
+    box-shadow: 0px 0px 10px -1px lightgrey;
+}
+
+.cardtext {
+    font-size: 1.2rem !important;
+}
+
+.ui-title {
+    color: #faf9f9;
+    font-size: 1.5rem !important;
+    text-overflow: unset !important;
+    margin: auto !important;
+}
+
+.ui-filterable {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.homeSmallDesc {
+    display: block;
+    text-align: center;
+}
+
+.curiosos {
+    border: none;
+    padding: 0;
+    border-radius: 40px;
+}
+
+.curiosos img {
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px -1px lightgrey;
+    display: block;
+}
+
+/************************************* Mascotas ***************************************/
+#pets #petList {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cardcat {
+    background: #faf9f9;
+    margin: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px -1px lightgrey;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.cardcat a {
+    display: block;
+    text-decoration: none;
+}
+
+/*.cardcat a img {
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    max-height: 180px;
+    max-width: 200px;
+    min-height: 0px;
+    background-color: #555b6e;
+}*/
+
+.cardcat a span:nth-child(1) {
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+}
+
+.cardcat a span {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+.cardcat .addimg {
+    border-radius: 60px;
+    background-color: #555b6e;
+}
+
+.cardAdd {
+    background: #faf9f9;
+    margin: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px -1px lightgrey;
+    max-width: 200px;
+    margin: 0 auto;
+    height: 180px !important;
+    display: flex;
+    align-items: center;
+}
+
+.cardAdd a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardAdd a img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 50%;
+}
+
+.catName {
+    transform: translateY(110px) !important;
+    text-align: center;
+}
+
+.catName div, .catName div input {
+    width: 90%!important;
+}
+
+#petSelected .catName {
+    text-align: left;
+}
+
+#petSelected .catName h1 {
+    margin: 0!important;
+}
+
+.petDataType {
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+    border-left-color: transparent !important;
+    color: black!important;
+}
+
+.listview-informative {
+    margin: 0 !important;
+}
+
+.listview-informative li {
+    font-weight: bold!important;
+    border-top-color: lightgray!important;
+    border-bottom-color: lightgray!important;
+    background-color: transparent!important;
+}
+
+.listview-informative li span {
+    float: right;
+    color: gray;
+}
+
+.foodList a {
+    display: block;
+    line-height: calc(80px - 1em);
+}
+
+.foodList-noicon a:after {
+    background-color: transparent;
+}
+
+.basicdataTitle {
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/************************************* petpedia ****************************************/
+.cardpetpedia {
+    width: 80%;
+    text-align: center;
+    box-shadow: 0px 0px 10px -1px lightgrey;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+
+.cardpetpedia div a img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%!important;
+}
+
+.cardpetpedia h2 {
+    margin-top: 5px;
+    padding-bottom: 10px;
+}
+
+.foodimg {
+    z-index: 100;
+}
+
+/************************************ Añadir mascota **********************************/
+.bgcolor {
+    height: 100px;
+    margin-left: -1em !important;
+    margin-right: -1em !important;
+    background-image: url("img/petSelected-banner.jpg");
+    box-shadow: 0px 0px 10px -1px lightgrey;
+}
+
+.catImg {
+    transform: translateY(40px) !important;
+    width: 110px !important;
+    height: 110px !important;
+    margin: 0 auto !important;
+    border-radius: 50% !important;
+    border: 5px solid white !important;
+    box-shadow: 0px 0px 10px -1px lightgrey!important;
+    padding: 0 !important;
+}
+
+.catImg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.buttonpop {
+    display: inline-block;
+    width: 20%;
+    font-size: 1rem !important;
+}
+
+.breedCard {
+    background: #faf9f9;
+    margin: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px -1px lightgrey;
+}
+
+.breedCard div img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.breedCard h2 {
+    margin: 5px;
+    font-size: 1rem;
+    margin-left: 15px;
+    padding-bottom: 5px;
+}
+
+#editPetPop div, #addPetPop div {
+    display: none;
+}
+
+/********************************** Perfil de usuario ********************************/
+
+.profileimg {
+    border-radius: 100px !important;
+    width: 100%;
+    transform: translateY(40px) !important;
+    padding: 5px;
+    
+}
+
+.profileimg img {
+    width: 100%;
+    border-radius: 100px !important;
+    display: table-cell;
+    vertical-align: middle;
+    max-width: 130px;
+    max-height: 130px;
+    margin: 0 auto;
+    border: 5px solid white !important;
+    box-shadow: 0px 0px 5px 1px #dfdfdf;
+}
+
+.profileName {
+    transform: translateY(120px) !important;
+    text-align: center;
+}
+
+.profileName span {
+    float: left;
+    font-size: 20px;
+}
+
+.listview-data {
+    float: right;
+    color: gray;
+}
+
+#profileEdit main .ui-input-text, #profileEdit main .ui-select {
+    display: none;
+}
+
+/********************************** Sobre nosotros ********************************/
+
+.developer {
+    padding: 10px;
+}
+
+.developer img {
+    border-radius: 50%;
+}
+
+.developer h2 {
+    text-align: center;
+}
+
+.developer a {
+    display: block;
+    text-align: center;
+}
+
+.developer a img {
+    max-width: 50px;
+    border-radius: 10px!important;
+    text-align: center;
+}
+
+.developer-contact {
+    font-size: 1.2rem;
+    text-align: center;
+    color: black;
+}

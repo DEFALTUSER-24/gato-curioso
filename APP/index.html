@@ -1,0 +1,709 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="jqm/jquery.mobile-1.4.5.css">
+    <script src="jqm/jquery-1.12.3.min.js"></script>
+    <script src="jqm/jquery.mobile-1.4.5.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Gatocurioso.css">
+    <script src="script.js"></script>
+    <title>El Gato Curioso</title>
+</head>
+
+<body>
+    <div class="loader" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <section data-role="page" id="newUser" data-theme="c">
+        <div style="padding: 30%;">
+            <img src="img/imgcat.png" alt="Alternate Text" />
+        </div>
+        <div class="center-content">
+            <h1 class="titleFont">¡Hola!</h1>
+            <form id="loginForm" enctype="multipart/form-data">
+                <small>Iniciá sesión para continuar</small>
+                <input type="email" data-clear-btn="true" name="loginEmail" placeholder="Tu email" required>
+                <input type="password" data-clear-btn="true" name="loginPassword" placeholder="Tu clave" required>
+                <input type="submit" value="Ingresar">
+                <a href="#" onclick="ToggleRegisterForm();">Quiero registrarme</a>
+            </form>
+            <form id="registerForm" enctype="multipart/form-data" style="display: none;">
+                <small>Registrate para continuar</small>
+                <input type="email" data-clear-btn="true" name="registerEmail" placeholder="Nuevo email" required>
+                <input type="text" data-clear-btn="true" name="username" placeholder="Tu nombre" required>
+                <input type="password" data-clear-btn="true" name="registerPassword" placeholder="Nueva clave" required>
+                <input type="submit" value="Registrarme">
+                <a href="#" onclick="ToggleRegisterForm();">Quiero iniciar sesión</a>
+            </form>
+        </div>
+    </section>
+
+    <!-- Páginas principales -->
+
+    <section data-role="page" id="home" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1 class="username titleFont">¡Hola <span class="titleFont"></span>!</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <h2 class="titlehome titleFont darkGreen">Tus mascotas</h2>
+            <hr>
+            <div id="petList">
+            </div>
+            <hr />
+            <div class="card curiosos" id="datosCuriososDiv">
+                <img src="img/curiosos.jpg" alt="Alternate Text" />
+            </div>
+            <div class="card">
+                <h2 class="">Visitas al veterinario recientes</h2>
+                <div class="card-inner" id="recentVetVisits"></div>
+            </div>
+            <div class="card">
+                <h2 class="">Vacunas recientes</h2>
+                <div class="card-inner" id="recentVaccines"></div>
+            </div>
+            <small class=" homeSmallDesc">¡Acá ves tus datos de los últimos 15 dias!</small>
+            <div id="datosPop" data-role="popup" data-overlay-theme="c" data-history="false" data-corners="false" class="ui-content">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                <h2>¿Sabias que...?</h2>
+                <p id="randomData"></p>
+            </div>
+        </main>
+
+        <div class="lvBackground"></div>
+        <div data-role="panel" class="slide-panel" data-position="right" data-display="overlay" data-position-fixed="true">
+            <a href="#pets" data-role="button">Mis mascotas</a>
+            <a href="#profile" data-role="button">Mi perfil</a>
+            <a href="#petpedia" data-role="button">Catpedia</a>
+            <a href="#aboutUs" data-role="button">Sobre nosotros</a>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li data-icon="plus"><a href="#addPet" class="">Agregar una mascota</a></li>
+                    <li data-icon="plus"><a href="#pets" class="">Agregar registro a una mascota</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn-home-active" data-icon="star" href="#home"></a></li>
+                    <li><a class="btn-cat" data-icon="star" href="#pets"></a></li>
+                    <li><a class="btn-plus" data-icon="star" href="#down"></a></li>
+                    <li><a class="btn-pedia" data-icon="star" href="#petpedia"></a></li>
+                    <li><a class="btn-panel" data-icon="star" href="#togglePanel"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section data-role="page" id="pets" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1 class="headertitle titleFont">Tus mascotas</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <div class="ui-grid-a" id="petList">
+            </div>
+        </main>
+
+        <div class="lvBackground"></div>
+        <div data-role="panel" class="slide-panel" data-position="right" data-display="overlay" data-position-fixed="true">
+            <a href="#pets" data-role="button">Mis mascotas</a>
+            <a href="#profile" data-role="button">Mi perfil</a>
+            <a href="#petpedia" data-role="button">Catpedia</a>
+            <a href="#aboutUs" data-role="button">Sobre nosotros</a>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li data-icon="plus"><a href="#addPet" class="">Agregar una mascota</a></li>
+                    <li data-icon="plus"><a href="#pets" class="">Agregar registro a una mascota</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn-home" data-icon="star" href="#home"></a></li>
+                    <li><a class="btn-cat-active" data-icon="star" href="#pets"></a></li>
+                    <li><a class="btn-plus" data-icon="star" href="#down"></a></li>
+                    <li><a class="btn-pedia" data-icon="star" href="#petpedia"></a></li>
+                    <li><a class="btn-panel" data-icon="star" href="#togglePanel"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section data-role="page" id="petpedia" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1 class="headertitle titleFont">Catpedia</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <div class="cardpetpedia">
+                <div class="card-inner">
+                    <a href="#breedList">
+                        <img src="img/razas.jpg" alt="razas">
+                    </a>
+                </div>
+                <h2 class="">Razas</h2>
+            </div>
+            <div class="cardpetpedia">
+                <div class="card-inner">
+                    <a href="https://maps.google.com/?q=Veterinarias" target="_blank">
+                        <img src="img/veterinarios.jpg" alt="razas">
+                    </a>
+                </div>
+                <h2 class="">Veterinarias</h2>
+            </div>
+            <div class="cardpetpedia">
+                <div class="card-inner">
+                    <a href="#foodList">
+                        <img src="img/alimentos.jpg" alt="razas">
+                    </a>
+                </div>
+                <h2 class="">Alimentos</h2>
+            </div>
+        </main>
+
+        <div class="lvBackground"></div>
+        <div data-role="panel" class="slide-panel" data-position="right" data-display="overlay" data-position-fixed="true">
+            <a href="#pets" data-role="button">Mis mascotas</a>
+            <a href="#profile" data-role="button">Mi perfil</a>
+            <a href="#petpedia" data-role="button">Catpedia</a>
+            <a href="#aboutUs" data-role="button">Sobre nosotros</a>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li data-icon="plus"><a href="#addPet" class="">Agregar una mascota</a></li>
+                    <li data-icon="plus"><a href="#pets" class="">Agregar registro a una mascota</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn-home" data-icon="star" href="#home"></a></li>
+                    <li><a class="btn-cat" data-icon="star" href="#pets"></a></li>
+                    <li><a class="btn-plus" data-icon="star" href="#down"></a></li>
+                    <li><a class="btn-pedia-active" data-icon="star" href="#petpedia"></a></li>
+                    <li><a class="btn-panel" data-icon="star" href="#togglePanel"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section data-role="page" id="aboutUs" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Sobre nosotros</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <h1 class="titleFont darkGreen" style="text-align: center;">Desarrolladores: </h1>
+            <div class="ui-grid-a">
+                <p class="developer-contact">Programación por <a href="https://www.behance.net/EzequielCastro" target="_blank">Castro Ezequiel</a>.</p>
+                <p class="developer-contact">Diseño por <a href="https://www.behance.net/leveldesign2" target="_blank">Bonazzola Ayelén</a>.</p>
+            </div>
+            <hr />
+            <h2 class="developer-contact">
+                <a href="https://github.com/DEFALTUSER-24/gato-curioso" target="_blank">Ver repositorio en GitHub</a>
+            </h2>
+        </main>
+
+        <div class="lvBackground"></div>
+        <div data-role="panel" class="slide-panel" data-position="right" data-display="overlay" data-position-fixed="true">
+            <a href="#pets" data-role="button">Mis mascotas</a>
+            <a href="#profile" data-role="button">Mi perfil</a>
+            <a href="#petpedia" data-role="button">Catpedia</a>
+            <a href="#aboutUs" data-role="button">Sobre nosotros</a>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li data-icon="plus"><a href="#addPet" class="">Agregar una mascota</a></li>
+                    <li data-icon="plus"><a href="#pets" class="">Agregar registro a una mascota</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn-home" data-icon="star" href="#home"></a></li>
+                    <li><a class="btn-cat" data-icon="star" href="#pets"></a></li>
+                    <li><a class="btn-plus" data-icon="star" href="#down"></a></li>
+                    <li><a class="btn-pedia" data-icon="star" href="#petpedia"></a></li>
+                    <li><a class="btn-panel" data-icon="star" href="#togglePanel"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perfil -->
+
+    <section data-role="page" id="profile" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1 class="headertitle titleFont">Tu perfil</h1>
+        </header>
+
+        <main role="main" class="ui-content" style="padding-top: 0px;">
+            <div class="bgcolor">
+                <div class="ui-grid-a ui-grid-no-overflow">
+                    <div class="ui-block-a">
+                        <div class="profileimg">
+                            <img src="img/user.png" alt="" class="orange-bg">
+                        </div>
+                    </div>
+                    <div class="ui-block-b profileName username">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dataMargin">
+                <ul data-role="listview" class="listview-informative">
+                    <li><a href="#profileEdit" class="username" onclick="profileEditingCategory(this);">Nombre <span class="listview-data"></span></a></li>
+                    <li><a href="#profileEdit" class="usersex" onclick="profileEditingCategory(this);">Sexo <span class="listview-data"></span></a></li>
+                    <li><a href="#profileEdit" class="useremail" onclick="profileEditingCategory(this);">Email <span class="listview-data"></span></a></li>
+                    <li><a href="#profileEdit" class="userpass" onclick="profileEditingCategory(this);">Clave <span class="listview-data"></span></a></li>
+                    <li><a href="#profileEdit" class="userbday" onclick="profileEditingCategory(this);">Fecha de nacimiento <span class="listview-data"></span></a></li>
+                </ul>
+                <input class="" type="button" value="Cerrar sesión" onclick="Logout();">
+            </div>
+        </main>
+
+        <div class="lvBackground"></div>
+        <div data-role="panel" class="slide-panel" data-position="right" data-display="overlay" data-position-fixed="true">
+            <a href="#pets" data-role="button">Mis mascotas</a>
+            <a href="#profile" data-role="button">Mi perfil</a>
+            <a href="#petpedia" data-role="button">Catpedia</a>
+            <a href="#aboutUs" data-role="button">Sobre nosotros</a>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li data-icon="plus"><a href="#addPet" class="">Agregar una mascota</a></li>
+                    <li data-icon="plus"><a href="#pets" class="">Agregar registro a una mascota</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn-home" data-icon="star" href="#home"></a></li>
+                    <li><a class="btn-cat" data-icon="star" href="#pets"></a></li>
+                    <li><a class="btn-plus" data-icon="star" href="#down"></a></li>
+                    <li><a class="btn-pedia" data-icon="star" href="#petpedia"></a></li>
+                    <li><a class="btn-panel" data-icon="star" href="#togglePanel"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section data-role="page" id="profileEdit" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#profile" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Editar perfil</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <small id="profileEditDesc" class="descriptive-text"></small>
+            <input type="text" data-clear-btn="true" name="profileEditName" id="profileEditName" placeholder="Tu nombre">
+            <input type="date" name="profileEditDate" id="profileEditDate" placeholder="Fecha">
+            <select name="profileEditSex" id="profileEditSex"></select>
+            <input type="email" name="profileEmail" id="profileEditEmail" placeholder="Nuevo email">
+            <input type="text" name="profilePass" id="profileEditPass" placeholder="Nueva clave">
+            <input type="button" value="Aceptar" onclick="SubmitProfileEdit();">
+        </main>
+    </section>
+
+    <!-- Mascotas -->
+    <!-- Agregar, editar y eliminar -->
+
+    <section data-role="page" id="addPet" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#pets" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Agregar nueva mascota</h1>
+        </header>
+
+        <main role="main" class="ui-content" style="padding-top: 0px;">
+            <div class="bgcolor">
+                <div class="ui-grid-a ui-grid-no-overflow">
+                    <div class="ui-block-a">
+                        <a href="#addPetPop" class="catImg orange-bg" data-role="button" data-rel="popup" data-position-to="window" data-transition="pop" data-theme="a">
+                            <img src="img/photo-camera.png" alt="petImg" id="newPetImg">
+                        </a>
+                    </div>
+                    <div class="ui-block-b catName">
+                        <input type="text" placeholder="Nombre de mascota" name="catName" class="">
+                    </div>
+                </div>
+            </div>
+
+            <div id="addPetPop" data-role="popup" data-overlay-theme="c" data-history="false" data-corners="false" class="ui-content">
+                <h2>Editar avatar</h2>
+                <p>Selecciona una imagen</p>
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                <input type="file" name="newImg" />
+                <button class="buttonpop" data-role="button" data-theme="c" onclick="SearchPhoto($(this));">Abrir galería</button>
+            </div>
+            <div class="dataMargin editInputMargin">
+                <h2 class="titleFont darkGreen basicdataTitle">Datos</h2>
+                <hr />
+                <ul data-role="listview">
+                    <li><a href="#breedList" class="breedInfo " onclick="profileEditingCategory(this);">Raza <span class="listview-data"></span></a></li>
+                    <li><a href="#catBDate" class="catBDate " onclick="profileEditingCategory(this);">Fecha de nacimiento <span class="listview-data"></span></a></li>
+                    <li><a href="#catColour" class="catColour " onclick="profileEditingCategory(this);">Color <span class="listview-data"></span></a></li>
+                    <li><a href="#catGenre" class="catGenre " onclick="profileEditingCategory(this);">Genero <span class="listview-data"></span></a></li>
+                    <li class="hidden-listview-input "><input type="text" data-clear-btn="true" placeholder="Teléfono" name="catPhone" class=""></li>
+                    <li class="hidden-listview-input "><input type="text" data-clear-btn="true" placeholder="Chip" name="catChip" class=""></li>
+                </ul>
+            </div>
+            <input class="" type="button" value="Aceptar" onclick="AddNewPet();">
+        </main>
+
+        <div class="lvBackground"></div>
+        <div data-role="panel" class="slide-panel" data-position="right" data-display="overlay" data-position-fixed="true">
+            <a href="#pets" data-role="button">Mis mascotas</a>
+            <a href="#profile" data-role="button">Mi perfil</a>
+            <a href="#petpedia" data-role="button">Catpedia</a>
+            <a href="#aboutUs" data-role="button">Sobre nosotros</a>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li data-icon="plus"><a href="#addPet" class="">Agregar una mascota</a></li>
+                    <li data-icon="plus"><a href="#pets" class="">Agregar registro a una mascota</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn-home" data-icon="star" href="#home"></a></li>
+                    <li><a class="btn-cat-active" data-icon="star" href="#pets"></a></li>
+                    <li><a class="btn-plus" data-icon="star" href="#down"></a></li>
+                    <li><a class="btn-pedia" data-icon="star" href="#petpedia"></a></li>
+                    <li><a class="btn-panel" data-icon="star" href="#togglePanel"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section data-role="page" id="editSelectedPet" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" onclick="EndPetEdit();"></a>
+            <h1 class="headertitle titleFont">Editar mascota</h1>
+            <a href="#" data-icon="back" data-iconpos="notext" class="ui-btn-right btn-header btn-delete" onclick="DeletePet();"></a>
+        </header>
+
+        <main role="main" class="ui-content" style="padding-top: 0px;">
+            <div class="bgcolor">
+                <div class="ui-grid-a ui-grid-no-overflow">
+                    <div class="ui-block-a">
+                        <a href="#editPetPop" class="catImg orange-bg" data-role="button" data-rel="popup" data-position-to="window" data-transition="pop" data-theme="a">
+                            <img src="img/photo-camera.png" alt="petPicture" id="editPetImg">
+                        </a>
+                    </div>
+                    <div class="ui-block-b catName">
+                        <input type="text" placeholder="Nombre de mascota" name="catName">
+                    </div>
+                </div>
+            </div>
+
+            <div class="dataMargin">
+                <div id="editPetPop" data-role="popup" data-overlay-theme="c" data-history="false" data-corners="false" class="ui-content">
+                    <h2>Editar avatar</h2>
+                    <p>Selecciona una imagen</p>
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                    <input type="file" name="newImg" />
+                    <button class="buttonpop" data-role="button" data-theme="c" onclick="SearchPhoto($(this));">Abrir galería</button>
+                </div>
+                <div class="editInputMargin">
+                    <h2 class="titleFont darkGreen basicdataTitle">Datos</h2>
+                    <ul data-role="listview" class="listview-informative">
+                        <li><a href="#breedList" class="breedInfo" onclick="profileEditingCategory(this);">Raza <span class="listview-data"></span></a></li>
+                        <li><a href="#catBDate" class="catBDate" onclick="profileEditingCategory(this);">Fecha de nacimiento <span class="listview-data"></span></a></li>
+                        <li><a href="#catColour" class="catColour" onclick="profileEditingCategory(this);">Color <span class="listview-data"></span></a></li>
+                        <li><a href="#catGenre" class="catGenre" onclick="profileEditingCategory(this);">Genero <span class="listview-data"></span></a></li>
+                        <li class="hidden-listview-input"><input type="text" data-clear-btn="true" placeholder="Teléfono" name="catPhone"></li>
+                        <li class="hidden-listview-input"><input type="text" data-clear-btn="true" placeholder="Chip" name="catChip"></li>
+                    </ul>
+                </div>
+                <input type="button" value="Guardar cambios" onclick="ModifyPet();" class="editInput">
+            </div>
+        </main>
+
+        <div class="lvBackground"></div>
+        <div data-role="panel" class="slide-panel" data-position="right" data-display="overlay" data-position-fixed="true">
+            <a href="#pets" data-role="button">Mis mascotas</a>
+            <a href="#profile" data-role="button">Mi perfil</a>
+            <a href="#petpedia" data-role="button">Catpedia</a>
+            <a href="#aboutUs" data-role="button">Sobre nosotros</a>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li data-icon="plus"><a href="#addPet" class="">Agregar una mascota</a></li>
+                    <li data-icon="plus"><a href="#pets" class="">Agregar registro a una mascota</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn-home" data-icon="star" href="#home"></a></li>
+                    <li><a class="btn-cat-active" data-icon="star" href="#pets"></a></li>
+                    <li><a class="btn-plus" data-icon="star" href="#down"></a></li>
+                    <li><a class="btn-pedia" data-icon="star" href="#petpedia"></a></li>
+                    <li><a class="btn-panel" data-icon="star" href="#togglePanel"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section data-role="page" id="catBDate" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Seleccionar fecha</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <small class="descriptive-text">Ingresá fecha de nacimiento</small>
+            <input type="date" name="catBDay" id="catBDay" placeholder="Fecha">
+            <input type="button" value="Aceptar" onclick="SubmitBirthDate(this)">
+        </main>
+    </section>
+
+    <!-- Ver datos de mascota -->
+
+    <section data-role="page" id="petSelected" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#pets" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Ver mascota</h1>
+            <a href="#editSelectedPet" data-icon="gear" data-iconpos="notext" class="ui-btn-right btn-header" data-transition="slide"></a>
+        </header>
+
+        <main role="main" class="ui-content noPadding">
+            <div class="bgcolor">
+                <div class="ui-grid-a ui-grid-no-overflow">
+                    <div class="ui-block-a">
+                        <a href="#" class="catImg orange-bg ui-link ui-btn ui-btn-a ui-shadow ui-corner-all">
+                            <img src="img/photo-camera.png" alt="petPicture">
+                        </a>
+                    </div>
+                    <div class="ui-block-b catName">
+                        <h1 class=""></h1>
+                        <small class=""></small>
+                    </div>
+                </div>
+            </div>
+
+            <div data-role="tabs" id="tabs" class="dataMargin noPadding">
+                <!--<div data-role="navbar">
+                    <ul>
+                        <li><a href="#one" data-ajax="false" class=" ui-btn-active petDataType">Datos</a></li>
+                        <li><a href="#two" data-ajax="false" class=" petDataType">Registros</a></li>
+                    </ul>
+                </div>-->
+                <div id="one" class="ui-body-d ui-content">
+                    <div class="editInputMargin">
+                        <h2 class="titleFont darkGreen basicdataTitle">Datos</h2>
+                        <ul data-role="listview" class="listview-informative">
+                            <li class="breedInfo ">Raza <span>a</span></li>
+                            <li class="catBDate ">Fecha de nacimiento <span></span></li>
+                            <li class="catColour ">Color <span></span></li>
+                            <li class="catGenre ">Genero <span></span></li>
+                            <li class="catPhone ">Teléfono <span></span></li>
+                            <li class="catChip ">Chip <span></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="two" class="ui-body-d ui-content">
+                    <div class="editInputMargin">
+                        <h2 class="titleFont darkGreen basicdataTitle">Registros</h2>
+                        <ul data-role="listview" class="listview-informative">
+                            <li><a href="#petFood" class="">Comidas <span></span></a></li>
+                            <li><a href="#petVetVisits" class="">Visitas al veterinario <span></span></a></li>
+                            <li><a href="#petVaccines" class="">Vacunas <span></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="lvBackground"></div>
+        <div data-role="panel" class="slide-panel" data-position="right" data-display="overlay" data-position-fixed="true">
+            <a href="#pets" data-role="button">Mis mascotas</a>
+            <a href="#profile" data-role="button">Mi perfil</a>
+            <a href="#petpedia" data-role="button">Catpedia</a>
+            <a href="#aboutUs" data-role="button">Sobre nosotros</a>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li data-icon="plus"><a href="#addPet" class="">Agregar una mascota</a></li>
+                    <li data-icon="plus"><a href="#pets" class="">Agregar registro a una mascota</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn-home" data-icon="star" href="#home"></a></li>
+                    <li><a class="btn-cat-active" data-icon="star" href="#pets"></a></li>
+                    <li><a class="btn-plus" data-icon="star" href="#down"></a></li>
+                    <li><a class="btn-pedia" data-icon="star" href="#petpedia"></a></li>
+                    <li><a class="btn-panel" data-icon="star" href="#togglePanel"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agregar/editar registros de mascota -->
+
+    <section data-role="page" id="petFood" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Comidas</h1>
+            <a href="#foodList" data-icon="plus" data-iconpos="notext" class="ui-btn-right btn-header"></a>
+        </header>
+
+        <main role="main" class="ui-content" id="petFoodList">
+
+        </main>
+    </section>
+
+    <section data-role="page" id="petVaccines" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Vacunas</h1>
+            <a href="#addVaccine" data-icon="plus" data-iconpos="notext" class="ui-btn-right btn-header"></a>
+        </header>
+
+        <main role="main" class="ui-content" id="petVaccinesList">
+
+        </main>
+    </section>
+
+    <section data-role="page" id="addVaccine" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Nueva vacuna</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <div class="editInputMargin">
+                <ul data-role="listview">
+                    <li><a href="#vaccineTypes" class="vaccineInfo">Tipo de vacuna <span class="listview-data" id="newVaccineType"></span></a></li>
+                    <li class="hidden-listview-input"><input type="date" name="vaccineDate" id="vaccineDate" placeholder="Fecha de vacunación"></li>
+                </ul>
+            </div>
+            <input type="button" value="Agregar" onclick="AddVaccine(this);">
+        </main>
+    </section>
+
+    <section data-role="page" id="petVetVisits" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Visitas al veterinario</h1>
+            <a href="#addPetVisit" data-icon="plus" data-iconpos="notext" class="ui-btn-right btn-header"></a>
+        </header>
+
+        <main role="main" class="ui-content" id="petVisitsList">
+
+        </main>
+    </section>
+
+    <section data-role="page" id="addPetVisit" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Nueva visita</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <div class="editInputMargin">
+                <ul data-role="listview">
+                    <li class="hidden-listview-input"><input type="text" data-clear-btn="true" placeholder="Nombre de la clínica" name="clinicName"></li>
+                    <li class="hidden-listview-input"><input type="date" name="visitDate" placeholder="Fecha de visita"></li>
+                    <li class="hidden-listview-input"><input type="text" data-clear-btn="true" placeholder="Nombre del veterinario" name="vetName"></li>
+                    <li class="hidden-listview-input"><input type="text" data-clear-btn="true" placeholder="Diagnostico" name="diagnostic"></li>
+                    <li class="hidden-listview-input"><input type="text" data-clear-btn="true" placeholder="Descripción" name="description"></li>
+                </ul>
+            </div>
+            <input type="button" value="Agregar" onclick="AddVetVisit(this);">
+        </main>
+    </section>
+
+    <section data-role="page" id="viewVisitDetails" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Ver visita</h1>
+            <a href="#" data-icon="back" data-iconpos="notext" class="ui-btn-right btn-header btn-delete" onclick="RemoveVetVisit();"></a>
+        </header>
+
+        <main role="main" class="ui-content noPadding">
+            <div class="editInputMargin">
+                <ul data-role="listview" class="listview-informative">
+                    <li class="clinicInfo">Clinica <span>a</span></li>
+                    <li class="visitInfo">Fecha de visita <span></span></li>
+                    <li class="vetInfo">Veterinario <span></span></li>
+                    <li class="diagnosticInfo hidden-listview-input"><input type="text" data-clear-btn="true" placeholder="Diagnostico" name="diagnostic"></li>
+                    <li class="descriptionInfo hidden-listview-input"><input type="text" data-clear-btn="true" placeholder="Descripción" name="description"></li>
+                </ul>
+            </div>
+        </main>
+    </section>
+
+    <!-- Listado de datos tomados desde API -->
+
+    <section data-role="page" id="breedList" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Razas</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <div class="ui-grid-a" id="breedListContent"></div>
+        </main>
+    </section>
+
+    <section data-role="page" id="breedDetail" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Abisinio</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <img src="" alt="">
+            <span class="mainFont"></span>
+        </main>
+    </section>
+
+    <section data-role="page" id="foodList" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Alimentos</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <ul data-role="listview" id="foodListContent"></ul>
+        </main>
+    </section>
+
+    <section data-role="page" id="catGenre" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Seleccionar genero</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <small class="descriptive-text">Seleccioná genero</small>
+            <select name="catGenreSelection" id="catGenreSelection"></select>
+            <input type="button" value="Aceptar" onclick="SubmitPetGenre(this)">
+        </main>
+    </section>
+
+    <section data-role="page" id="catColour" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Seleccionar color</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <small class="descriptive-text">Seleccioná color</small>
+            <select name="catColourSelection" id="catColourSelection"></select>
+            <input type="button" value="Aceptar" onclick="SubmitPetColour(this)">
+        </main>
+    </section>
+
+    <section data-role="page" id="vaccineTypes" data-theme="c">
+        <header data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a href="#" data-rel="back" data-icon="carat-l" data-iconpos="notext" class="ui-btn-left btn-header" data-transition="slide" data-direction="reverse"></a>
+            <h1 class="headertitle titleFont">Tipo de vacuna</h1>
+        </header>
+
+        <main role="main" class="ui-content">
+            <small class="descriptive-text">Seleccioná tipo de vacuna</small>
+            <select name="vaccineTypeSelection" id="vaccineTypeSelection"></select>
+            <input type="button" value="Aceptar" onclick="SubmitVaccineType(this);">
+        </main>
+    </section>
+</body>
+
+</html>
