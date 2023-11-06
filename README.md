@@ -2,7 +2,7 @@
 
 Es una app que facilita los datos de tus mascotas para que no te olvides los turnos con el veterinario, las vacunas que le diste y la comida que le das. Cuenta con una seccion de Catpedia que te muestra algunas razas, un mapa con las veterinarias y guia de alimentos. Podes agregar a todos tus gatos, colocarles una foto y todos sus datos personales. Cuenta con una sección de datos curiosos para que sepas todo sobre tus mascotas.
 
-Diseño realizado por <a href="https://www.behance.net/leveldesign2" target="_blank">Bonazzola Ayelén</a>
+Diseño realizado por <a href="https://www.behance.net/bonayee" target="_blank">Bonazzola Ayelén</a>
 
 <br>
 
